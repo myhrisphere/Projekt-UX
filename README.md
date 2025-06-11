@@ -11,6 +11,8 @@ Do zaliczenia:
 
 FreshAlert is a simple Flask web app for managing food items and tracking their expiration dates. Users can log in, add/delete products stored in a CSV file, and view details in a popup card.
 
+You can check the app out at [projekt-ux-production.up.railway.app] with user (login: user          password: user)
+
 ---
 
 ## 🚀 Quick Start
