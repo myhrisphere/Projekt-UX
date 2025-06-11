@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>FreshAlert</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
 <body>
     <div class="top-bar">
@@ -16,12 +16,14 @@
             </div>
             <h2 class="user-greeting">Witaj, <div class="user-name">{{ user }}</div>!</h2>
         </div>
-
+        
         <div class="action-buttons">
             <form action="{{ url_for('logout') }}" method="get">
                 <button class="button logout">WYLOGUJ SIĘ</button>
             </form>
-            <button class="button add-product">+ DODAJ PRODUKT</button>
+            <a href="{{ url_for('add_product') }}">
+                <button class="button add-product">+ DODAJ PRODUKT</button>
+            </a>
         </div>
     </div>
 
@@ -29,10 +31,19 @@
         <div class="column">
             <h3>Najkrótszy termin:</h3>
             {% for product in products[:4] %}
-            <div class="product-item {{ product.urgency }}" data-name="{{ product.name }}" data-expires="{{ product.expires }}" data-days="{{ product.days_left }}" data-quantity="{{ product.quantity or '1' }}" data-notes="{{ product.notes or 'brak' }}">
+            <div class="product-item {{ product.urgency }}" 
+                data-name="{{ product.name }}"
+                data-expires="{{ product.expires }}"
+                data-days-left="{{ product.days_left }}"
+                data-quantity="{{ product.quantity }}"
+                data-notes="{{ product.notes }}">
                 <strong>{{ product.name }}</strong><br>
                 do {{ product.expires }}<br>
                 Pozostało: {{ product.days_left }}
+                <form method="post" action="{{ url_for('delete_product') }}" class="delete-form">
+                    <input type="hidden" name="name" value="{{ product.name }}">
+                    <button type="submit" class="delete-btn">&times;</button>
+                </form>
             </div>
             {% endfor %}
         </div>
@@ -52,14 +63,18 @@
                         {% set index = col * num_rows + row %}
                         {% if products[index] is defined %}
                         <div class="product-item {{ products[index].urgency }}"
-                             data-name="{{ products[index].name }}"
-                             data-expires="{{ products[index].expires }}"
-                             data-days="{{ products[index].days_left }}"
-                             data-quantity="{{ products[index].quantity or '1' }}"
-                             data-notes="{{ products[index].notes or 'brak' }}">
+                            data-name="{{ products[index].name }}"
+                            data-expires="{{ products[index].expires }}"
+                            data-days-left="{{ products[index].days_left }}"
+                            data-quantity="{{ products[index].quantity }}"
+                            data-notes="{{ products[index].notes }}">
                             <strong>{{ products[index].name }}</strong><br>
                             do {{ products[index].expires }}<br>
                             Pozostało: {{ products[index].days_left }}
+                            <form method="post" action="{{ url_for('delete_product') }}" class="delete-form">
+                                <input type="hidden" name="name" value="{{ products[index].name }}">
+                                <button type="submit" class="delete-btn">&times;</button>
+                            </form>
                         </div>
                         {% endif %}
                     {% endfor %}
@@ -67,14 +82,6 @@
                 {% endfor %}
             </div>
         </div>
-    </div>
-
-    <div id="product-popup" class="popup-card hidden">
-        <div><strong id="popup-name"></strong> <span id="popup-close">&times;</span></div>
-        <div>do <span id="popup-expires"></span></div>
-        <div>Pozostało: <span id="popup-days"></span></div>
-        <div>Ilość: <span id="popup-quantity"></span></div>
-        <div>Opis: <span id="popup-notes"></span></div>
     </div>
 </body>
 </html>
