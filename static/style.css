@@ -4,7 +4,7 @@ body {
     font-family: 'Segoe UI', sans-serif;
 }
 
-/* LOGIN STYLES */
+/* === LOGIN === */
 .container {
     display: flex;
     flex-direction: column;
@@ -27,13 +27,17 @@ body {
 }
 
 input[type="text"],
-input[type="password"] {
-    width: 90%;
+input[type="password"],
+input[type="date"],
+input[type="number"],
+textarea {
+    width: 100%;
     padding: 15px;
     margin: 10px 0 20px;
     border: none;
     border-radius: 10px;
     font-size: 16px;
+    box-sizing: border-box;
 }
 
 button {
@@ -45,8 +49,6 @@ button {
     cursor: pointer;
     font-weight: bold;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    display: block;
-    margin: 0 auto;
 }
 
 button:hover {
@@ -58,11 +60,7 @@ button:hover {
     margin-top: 10px;
 }
 
-.login-subtitle {
-    text-align: left;
-}
-
-/* DASHBOARD STYLES */
+/* === TOP BAR === */
 .top-bar {
     display: flex;
     justify-content: space-between;
@@ -118,7 +116,7 @@ button:hover {
     width: 160px;
 }
 
-/* DASHBOARD LAYOUT */
+/* === DASHBOARD === */
 .dashboard-content {
     display: flex;
     justify-content: center;
@@ -139,7 +137,7 @@ button:hover {
     margin: 10px 0;
 }
 
-/* PRODUCT BOXES */
+/* === PRODUCT ITEM === */
 .product-item {
     position: relative;
     width: 200px;
@@ -159,19 +157,20 @@ button:hover {
     transform: scale(1.02);
 }
 
-.product-item.red {
-    background-color: #6B1E1E;
+.product-item.red { background-color: #6B1E1E; }
+.product-item.yellow { background-color: #C4A71E; }
+.product-item.green { background-color: #1EAD4F; }
+
+.delete-icon {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
 }
 
-.product-item.yellow {
-    background-color: #C4A71E;
-}
-
-.product-item.green {
-    background-color: #1EAD4F;
-}
-
-/* FRIDGE SECTION */
+/* === FRIDGE === */
 .fridge {
     flex-grow: 1;
     max-width: 900px;
@@ -194,14 +193,9 @@ button:hover {
     font-weight: bold;
     background-color: #E0E0E0;
     font-size: 14px;
+    width: 240px;
 }
 
-.search-bar {
-    width: 20% !important;
-    margin: 10px 0 !important;
-}
-
-/* GRID SYSTEM FOR PRODUCTS */
 .fridge-grid {
     display: flex;
     flex-direction: row;
@@ -213,35 +207,96 @@ button:hover {
     flex-direction: column;
 }
 
-/* POPUP CARD */
+/* === PRODUCT POPUP === */
 .popup-card {
     position: absolute;
-    background-color: #2E2E2E;
+    background-color: #2e2e2e;
     color: white;
-    padding: 15px;
-    font-size: 14px;
-    border-radius: 10px;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.5);
-    z-index: 999;
-    width: 220px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    top: 0; /* align vertically */
+    border-radius: 12px;
+    padding: 16px;
+    width: 240px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    font-size: 15px;
+    z-index: 99;
 }
 
+.popup-card span#popup-close {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Hide initially */
 .popup-card.hidden {
     display: none;
 }
-#popup-name {
-    float: left;
+
+/* === ADD PRODUCT FORM === */
+.form-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #91D7A3;
 }
 
-#popup-close {
-    align-self: flex-end;
+.product-form {
+    background-color: #2E4A39;
+    color: white;
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 800px;
+    width: 90%;
+    position: relative;
+}
+
+.product-form h2 {
+    margin-top: 0;
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.form-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: white;
     cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-    float: right;
 }
 
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group textarea {
+    height: 100%;
+    resize: none;
+}
+
+.form-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    background-color: white;
+    color: #2E4A39;
+    cursor: pointer;
+}
