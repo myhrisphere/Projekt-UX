@@ -43,12 +43,18 @@ textarea {
 button {
     background-color: white;
     color: #355D4A;
-    padding: 10px 20px;
     border: none;
     border-radius: 12px;
     cursor: pointer;
     font-weight: bold;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.login-btn {
+    padding: 10px 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 button:hover {
@@ -141,16 +147,16 @@ button:hover {
 .product-item {
     position: relative;
     width: 200px;
-    height: 80px;
     border-radius: 12px;
     padding: 10px 15px;
     color: white;
-    line-height: 1.4;
     font-size: 16px;
     box-sizing: border-box;
     margin-top: 10px;
     transition: transform 0.2s;
-    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .product-item:hover {
@@ -161,13 +167,18 @@ button:hover {
 .product-item.yellow { background-color: #C4A71E; }
 .product-item.green { background-color: #1EAD4F; }
 
-.delete-icon {
-    position: absolute;
-    top: 6px;
-    right: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
+/* HEADER WITH NAME  AND DELETE ICON */
+.product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+/* Addtional info */
+.product-body {
+    font-size: 14px;
+    line-height: 1.4;
 }
 
 /* === FRIDGE === */
@@ -299,4 +310,37 @@ button:hover {
     background-color: white;
     color: #2E4A39;
     cursor: pointer;
+}
+
+/* === DELETE BUTTON & ICON === */
+.delete-icon {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.delete-form {
+    margin: 0;
+}
+
+.delete-btn {
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-btn:hover {
+    background-color: #ddd;
 }
