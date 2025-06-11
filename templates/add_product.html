@@ -1,42 +1,60 @@
 <!DOCTYPE html>
 <html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <title>Dodaj produkt</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-<div class="form-overlay">
-    <form class="product-form" method="POST">
-        <button type="button" class="form-close" onclick="window.location.href='{{ url_for('/dashboard') }}'">&times;</button>
-        <h2>Wprowadź nowy produkt:</h2>
-
-        <div class="form-row">
-            <div class="form-group">
-                <label>Nazwa produktu:</label>
-                <input type="text" name="name" required>
+    <head>
+        <meta charset="UTF-8">
+        <title>Dodaj produkt</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <div class="top-bar">
+            <div class="logo-block">
+                <img src="{{ url_for('static', filename='logo-img-only.png') }}" class="logo" alt="FreshAlert Logo">
+                <div class="brand">
+                    <h1>FreshAlert</h1>
+                    <p>Razem na ratunek żywności</p>
+                </div>
+                <h2 class="user-greeting">Witaj, <div class="user-name">{{ user }}</div>!</h2>
             </div>
-            <div class="form-group">
-                <label>Ilość (w sztukach)</label>
-                <input type="number" name="quantity" min="1" value="1" required>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-group">
-                <label>Data ważności</label>
-                <input type="date" name="expires" required>
-            </div>
-            <div class="form-group">
-                <label>Opis (opcjonalnie)</label>
-                <textarea name="notes" rows="4"></textarea>
+            <div class="action-buttons">
+                <form action="{{ url_for('logout') }}" method="get">
+                    <button class="button logout">WYLOGUJ SIĘ</button>
+                </form>
+                <a href="{{ url_for('dashboard') }}">
+                    <button class="button add-product">WRÓĆ</button>
+                </a>
             </div>
         </div>
+        <div class="form-overlay">
+            <form class="product-form" method="POST">
+                <button type="button" class="form-close" onclick="window.location.href='{{ url_for('dashboard') }}'">&times;</button>
+                <h2>Wprowadź nowy produkt:</h2>
 
-        <div class="form-footer">
-            <button class="submit-btn" type="submit">+ Dodaj</button>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nazwa produktu:</label>
+                        <input type="text" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Ilość (w sztukach)</label>
+                        <input type="number" name="quantity" min="1" value="1" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Data ważności</label>
+                        <input type="date" name="expires" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Opis (opcjonalnie)</label>
+                        <textarea name="notes" rows="4"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-footer">
+                    <button class="submit-btn" type="submit">+ Dodaj</button>
+                </div>
+            </form>
         </div>
-    </form>
-</div>
-</body>
+    </body>
 </html>

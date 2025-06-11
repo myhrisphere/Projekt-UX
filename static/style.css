@@ -160,8 +160,11 @@ button:hover {
 }
 
 .product-item:hover {
-    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    /* Optional smooth hover effect */
+    transition: box-shadow 0.2s ease;
 }
+
 
 .product-item.red { background-color: #6B1E1E; }
 .product-item.yellow { background-color: #C4A71E; }
@@ -249,8 +252,8 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
     background-color: #91D7A3;
+    margin-top: 100px;
 }
 
 .product-form {
