@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>FreshAlert</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="logo-block">
+            <img src="{{ url_for('static', filename='logo-img-only.png') }}" class="logo" alt="FreshAlert Logo">
+            <div class="brand">
+                <h1>FreshAlert</h1>
+                <p>Razem na ratunek żywności</p>
+            </div>
+            <h2 class="user-greeting">Witaj, <div class="user-name">{{ user }}</div>!</h2>
+        </div>
+
+        <div class="action-buttons">
+            <form action="{{ url_for('logout') }}" method="get">
+                <button class="button logout">WYLOGUJ SIĘ</button>
+            </form>
+            <button class="button add-product">+ DODAJ PRODUKT</button>
+        </div>
+    </div>
+
+    <div class="dashboard-content">
+        <div class="column">
+            <h3>Najkrótszy termin:</h3>
+            {% for product in products[:4] %}
+            <div class="product-item {{ product.urgency }}" data-name="{{ product.name }}" data-expires="{{ product.expires }}" data-days="{{ product.days_left }}" data-quantity="{{ product.quantity or '1' }}" data-notes="{{ product.notes or 'brak' }}">
+                <strong>{{ product.name }}</strong><br>
+                do {{ product.expires }}<br>
+                Pozostało: {{ product.days_left }}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="column fridge">
+            <div class="fridge-header">
+                <h3>Lodówka:</h3>
+                <input class="search-bar" type="text" placeholder="WYSZUKAJ PRODUKT">
+            </div>
+            <div class="fridge-grid">
+                {% set num_rows = 4 %}
+                {% set num_columns = (products|length + num_rows - 1) // num_rows %}
+
+                {% for col in range(num_columns) %}
+                <div class="fridge-column">
+                    {% for row in range(num_rows) %}
+                        {% set index = col * num_rows + row %}
+                        {% if products[index] is defined %}
+                        <div class="product-item {{ products[index].urgency }}"
+                             data-name="{{ products[index].name }}"
+                             data-expires="{{ products[index].expires }}"
+                             data-days="{{ products[index].days_left }}"
+                             data-quantity="{{ products[index].quantity or '1' }}"
+                             data-notes="{{ products[index].notes or 'brak' }}">
+                            <strong>{{ products[index].name }}</strong><br>
+                            do {{ products[index].expires }}<br>
+                            Pozostało: {{ products[index].days_left }}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div id="product-popup" class="popup-card hidden">
+        <div><strong id="popup-name"></strong> <span id="popup-close">&times;</span></div>
+        <div>do <span id="popup-expires"></span></div>
+        <div>Pozostało: <span id="popup-days"></span></div>
+        <div>Ilość: <span id="popup-quantity"></span></div>
+        <div>Opis: <span id="popup-notes"></span></div>
+    </div>
+</body>
+</html>

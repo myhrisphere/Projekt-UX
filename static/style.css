@@ -1,0 +1,247 @@
+body {
+    margin: 0;
+    background-color: #91D7A3;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* LOGIN STYLES */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-login {
+    width: 20%;
+    margin-bottom: 40px;
+}
+
+.login-container {
+    background-color: #355D4A;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    color: white;
+    text-align: left;
+    width: 350px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 90%;
+    padding: 15px;
+    margin: 10px 0 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+button {
+    background-color: white;
+    color: #355D4A;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    display: block;
+    margin: 0 auto;
+}
+
+button:hover {
+    background-color: #f0f0f0;
+}
+
+.error {
+    color: #FF6B6B;
+    margin-top: 10px;
+}
+
+.login-subtitle {
+    text-align: left;
+}
+
+/* DASHBOARD STYLES */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+}
+
+.logo-block {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    width: 100px;
+}
+
+.brand h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.brand p {
+    margin: 0;
+    font-size: 12px;
+}
+
+.user-greeting {
+    margin-left: 20px;
+    font-size: 24px;
+}
+
+.user-name {
+    color: #ff4900;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.logout,
+.add-product {
+    background-color: #BDBDBD;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 160px;
+}
+
+/* DASHBOARD LAYOUT */
+.dashboard-content {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px 40px;
+}
+
+.column {
+    background-color: #355D4A;
+    padding: 30px;
+    border-radius: 15px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.column h3 {
+    margin: 10px 0;
+}
+
+/* PRODUCT BOXES */
+.product-item {
+    position: relative;
+    width: 200px;
+    height: 80px;
+    border-radius: 12px;
+    padding: 10px 15px;
+    color: white;
+    line-height: 1.4;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.product-item:hover {
+    transform: scale(1.02);
+}
+
+.product-item.red {
+    background-color: #6B1E1E;
+}
+
+.product-item.yellow {
+    background-color: #C4A71E;
+}
+
+.product-item.green {
+    background-color: #1EAD4F;
+}
+
+/* FRIDGE SECTION */
+.fridge {
+    flex-grow: 1;
+    max-width: 900px;
+}
+
+.fridge-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fridge-header h3 {
+    margin: 10px 0;
+}
+
+.fridge-header input {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    background-color: #E0E0E0;
+    font-size: 14px;
+}
+
+.search-bar {
+    width: 20% !important;
+    margin: 10px 0 !important;
+}
+
+/* GRID SYSTEM FOR PRODUCTS */
+.fridge-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.fridge-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* POPUP CARD */
+.popup-card {
+    position: absolute;
+    background-color: #2E2E2E;
+    color: white;
+    padding: 15px;
+    font-size: 14px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+    z-index: 999;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    top: 0; /* align vertically */
+}
+
+.popup-card.hidden {
+    display: none;
+}
+#popup-name {
+    float: left;
+}
+
+#popup-close {
+    align-self: flex-end;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    float: right;
+}
+
