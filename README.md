@@ -1,12 +1,3 @@
-# ProjektUX
-
-Do zaliczenia:
-  *  3 makiety (nie animowane, glownie layout) -> np. FIGMA
-  *  aplikacja
-  *  krotka dokumentacja (przede wszystkim API etc)
-  *  testy uzytecznosci (przypadki uzycia; 10-12 minimum) -> w formie tabeli
-  *  prezentacja (obligatoryjne!)
-
 # 📦 FreshAlert
 
 FreshAlert is a simple Flask web app for managing food items and tracking their expiration dates. Users can log in, add/delete products stored in a CSV file, and view details in a popup card.
